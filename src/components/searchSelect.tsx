@@ -34,13 +34,13 @@ export function SearchSelect({ data, onChange }: any) {
           {value
             ? data.find(
                 (d: any) =>
-                  d.value.toLocaleLowerCase() === value.toLocaleLowerCase()
+                  d.label.toLocaleLowerCase() === value.toLocaleLowerCase()
               )?.label
             : "Select country..."}
           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-[200px] p-0">
+      <PopoverContent className="w-[200px] p-0 max-h-[150px] overflow-auto">
         <Command>
           <CommandInput placeholder="Search a country..." />
           <CommandEmpty>No country found.</CommandEmpty>
@@ -48,10 +48,18 @@ export function SearchSelect({ data, onChange }: any) {
             {data.map((d: any) => (
               <CommandItem
                 key={d.value}
-                value={d.value}
+                value={d.label}
                 onSelect={(currentValue) => {
-                  setValue(currentValue === value ? "" : currentValue);
-                  onChange(currentValue === value ? "" : currentValue);
+                  const v = currentValue === value ? "" : currentValue;
+                  setValue(v);
+                  onChange(
+                    (
+                      data.find(
+                        (a) =>
+                          a.label.toLocaleLowerCase() === v.toLocaleLowerCase()
+                      ) || {}
+                    ).value
+                  );
                   setOpen(false);
                 }}
               >
