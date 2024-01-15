@@ -13,12 +13,10 @@ import { countries as countryInfo } from "@/lib/countries";
 
 export const AddCountryModal = () => {
   const router = useRouter();
-  const [isClient, setIsClient] = useState(false);
   const [currentCountry, setCurrentCountry] = useState<any>();
   const [open, setIsOpen] = useState(false);
 
   useEffect(() => {
-    setIsClient(true);
     setIsOpen(router.query.key === process.env.NEXT_PUBLIC_KEY);
   }, []);
 

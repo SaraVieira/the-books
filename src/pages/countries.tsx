@@ -27,7 +27,7 @@ export const getServerSideProps: GetServerSideProps<any> = async () => {
 export default function Countries({ countries }: any) {
   return (
     <>
-      <Link href={"/"} className="mb-8 block flex gap-2">
+      <Link href={"/"} className="mb-8 flex gap-2">
         <ChevronLeft /> Go back
       </Link>
       <AddCountryModal />
@@ -47,7 +47,7 @@ export default function Countries({ countries }: any) {
           {countries.map((country) => (
             <TableRow key={country._id}>
               <TableCell className="font-medium">
-                <img src={country.flag} />
+                <img src={country.flag} alt={country.name} />
               </TableCell>
               <TableCell>{country.name}</TableCell>
               <TableCell>{country.region}</TableCell>

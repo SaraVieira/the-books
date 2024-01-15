@@ -40,7 +40,7 @@ export const getServerSideProps: GetServerSideProps<any> = async () => {
 export default function Games({ games }: any) {
   return (
     <>
-      <Link href={"/"} className="mb-8 block flex gap-2">
+      <Link href={"/"} className="mb-8 flex gap-2">
         <ChevronLeft /> Go back
       </Link>
       <AddGameModal />
@@ -64,7 +64,7 @@ export default function Games({ games }: any) {
           {games.map((game) => (
             <TableRow key={game._id}>
               <TableCell className="font-medium">
-                <img src={game.image} />
+                <img src={game.image} alt={game.name} />
               </TableCell>
               <TableCell>{game.name}</TableCell>
               <TableCell>

@@ -18,7 +18,6 @@ import { Calendar } from "../ui/calendar";
 
 export const AddGameModal = () => {
   const router = useRouter();
-  const [isClient, setIsClient] = useState(false);
   const [notes, setNotes] = useState("");
   const [date, setDate] = useState<Date | undefined>(new Date());
   const [game, setCurrentGame] = useState<any>();
@@ -40,7 +39,6 @@ export const AddGameModal = () => {
   };
 
   useEffect(() => {
-    setIsClient(true);
     setIsOpen(router.query.key === process.env.NEXT_PUBLIC_KEY);
   }, []);
 
