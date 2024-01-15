@@ -1,4 +1,4 @@
-import { SearchSelect } from "@/components/searchSelect";
+import { AddCountryModal } from "@/components/modals/AddCountryModal";
 import {
   Table,
   TableBody,
@@ -9,19 +9,10 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import {
-  Dialog,
-  DialogContent,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
-import { countries as countryInfo } from "@/lib/countries";
 import clientPromise from "@/lib/mongodb";
+import { ChevronLeft } from "lucide-react";
 import { GetServerSideProps } from "next";
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
-import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export const getServerSideProps: GetServerSideProps<any> = async () => {
   const client = await clientPromise;
@@ -34,62 +25,12 @@ export const getServerSideProps: GetServerSideProps<any> = async () => {
 };
 
 export default function Countries({ countries }: any) {
-  const router = useRouter();
-  const [isClient, setIsClient] = useState(false);
-  const [currentCountry, setCurrentCountry] = useState<any>();
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
-  const onChange = async (name: string) => {
-    const data = await fetch(
-      `https://restcountries.com/v3.1/alpha/${name}`
-    ).then((rsp) => rsp.json());
-    setCurrentCountry({
-      name: data[0].name.common,
-      region: data[0].region,
-      flag: data[0].flags.png,
-      location: data[0].latlng,
-      subregion: data[0].subregion,
-      currency: (Object.values(data[0].currencies)[0] as any).name,
-    });
-  };
-
-  const onAddCountry = async () => {
-    await fetch(`/api/db`, {
-      method: "POST",
-      body: JSON.stringify({
-        data: currentCountry,
-        collection: "countries",
-      }),
-    });
-    router.replace("/countries", undefined);
-  };
-
   return (
     <>
-      <Dialog open={router.query.key === "lol" && isClient}>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Add a country</DialogTitle>
-            <div className="pt-4">
-              <SearchSelect
-                data={countryInfo.map((c) => ({
-                  value: c.code,
-                  label: c.name,
-                }))}
-                onChange={onChange}
-              />
-            </div>
-          </DialogHeader>
-          <DialogFooter>
-            <Button disabled={!currentCountry} onClick={onAddCountry}>
-              Add country
-            </Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
-
+      <Link href={"/"} className="mb-8 block flex gap-2">
+        <ChevronLeft /> Go back
+      </Link>
+      <AddCountryModal />
       <Table>
         <TableCaption>Visited Countries</TableCaption>
         <TableHeader>
