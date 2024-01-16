@@ -1,11 +1,9 @@
 import { Tooltip } from "react-svg-tooltip";
-import React from "react";
+import React, { useState } from "react";
 
 import { Mercator, Graticule } from "@visx/geo";
 import * as topojson from "topojson-client";
 import topology from "@/lib/topo";
-
-export const background = "#f9f7e8";
 
 export type GeoMercatorProps = {
   width: number;
@@ -25,10 +23,10 @@ const world = topojson.feature(topology, topology.objects.units) as {
   features: FeatureShape[];
 };
 
-export default function ({ width, height, countries }: GeoMercatorProps) {
+function Map({ width, height, countries }: GeoMercatorProps) {
+  const scale = (width / 630) * 100;
   const centerX = width / 2;
   const centerY = height / 2;
-  const scale = (width / 630) * 100;
   return width < 10 ? null : (
     <svg width={width} height={height}>
       <rect
@@ -36,7 +34,7 @@ export default function ({ width, height, countries }: GeoMercatorProps) {
         y={0}
         width={width}
         height={height}
-        fill={background}
+        fill={"#f9f7e8"}
         rx={14}
       />
       <Mercator<FeatureShape>
@@ -79,7 +77,7 @@ const Country = ({ feature, path, countries }) => {
             ? "#ffa020"
             : "#858383"
         }
-        stroke={background}
+        stroke={"#f9f7e8"}
         strokeWidth={0.5}
       />
       <Tooltip triggerRef={countryRef}>
@@ -99,3 +97,5 @@ const Country = ({ feature, path, countries }) => {
     </>
   );
 };
+
+export default Map;
