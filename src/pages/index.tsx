@@ -9,6 +9,10 @@ const links = [
         link: "/countries",
         label: "Countries",
       },
+      {
+        link: "/conferences",
+        label: "Conferences Spoken",
+      },
     ],
   },
   {
@@ -37,7 +41,7 @@ export default function Home() {
             <Separator className="my-4 max-w-[200px]" />
             {link.links.map((l) => (
               <div
-                className="flex h-5 items-center space-x-4 text-sm"
+                className="flex h-5 items-center space-x-4 text-sm mb-2"
                 key={l.link}
               >
                 <div>
