@@ -1,5 +1,5 @@
 import { Tooltip } from "react-svg-tooltip";
-import React, { useState } from "react";
+import React from "react";
 
 import { Mercator, Graticule } from "@visx/geo";
 import * as topojson from "topojson-client";
