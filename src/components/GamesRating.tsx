@@ -5,8 +5,8 @@ import { Circle } from "@visx/shape";
 import { GradientPinkRed } from "@visx/gradient";
 import { scaleLinear } from "@visx/scale";
 
-const x = (d) => d[0];
-const y = (d) => d[1];
+const x = (d: number[]) => d[0];
+const y = (d: number[]) => d[1];
 
 export type DotsProps = {
   width: number;
@@ -17,7 +17,7 @@ export type DotsProps = {
   }[];
 };
 
-export default ({ width, height, data }: DotsProps) => {
+const GamesRating = ({ width, height, data }: DotsProps) => {
   if (width < 10) return null;
   const svgRef = useRef<SVGSVGElement>(null);
 
@@ -90,3 +90,5 @@ const Game = ({ point, length, i, width, height }) => {
     </>
   );
 };
+
+export default GamesRating;
