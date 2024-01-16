@@ -35,7 +35,7 @@ export default function Countries({ countries }: any) {
         <ChevronLeft /> Go back
       </Link>
       <AddCountryModal />
-      <Tabs defaultValue="map" className="w-full">
+      <Tabs defaultValue="table" className="w-full">
         <TabsList className="grid w-full grid-cols-2 mb-8">
           <TabsTrigger value="table">Table</TabsTrigger>
           <TabsTrigger value="map">Map</TabsTrigger>
