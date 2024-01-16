@@ -19,11 +19,10 @@ export type DotsProps = {
 
 const GamesRating = ({ width, height, data }: DotsProps) => {
   if (width < 10) return null;
-  const svgRef = useRef<SVGSVGElement>(null);
 
   return (
     <div>
-      <svg width={width} height={height} ref={svgRef}>
+      <svg width={width} height={height}>
         <GradientPinkRed id="dots-pink" />
         <rect width={width} height={height} rx={14} fill="url(#dots-pink)" />
         <Group>
